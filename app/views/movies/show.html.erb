@@ -10,3 +10,9 @@
     <%= a.name %>
   <% end %>
 </div>
+
+<div class="columns">
+  <%= form_with url: "/movies/#{@movie.id}/add_actor", method: :patch, local: true do |f| %>
+    <%= f.select :actor, Actor.all.pluck(:name, :id) %>
+  <% end %>
+</div>
