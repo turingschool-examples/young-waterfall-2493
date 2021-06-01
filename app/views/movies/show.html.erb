@@ -1,0 +1,7 @@
+<h2><%= @movie.title %></h2>
+  <p><%= @movie.creation_year %></p>
+  <p><%= @movie.genre %></p>
+<h3>Actors Filmed at this Studio:</h3>
+  <p><% @movie.actors.each do |actor| %></p>
+    <%= actor.name %>
+  <p><% end %></p>
