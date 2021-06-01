@@ -15,6 +15,10 @@ RSpec.describe 'studio show page' do
     expect(page).to have_content(@studio.location)
   end    
 
-  xit 'shows the titles of all the studio movies' do
+  it 'shows the titles of all the studio movies' do
+    visit "/studio/#{@studio.id}"
+    
+    expect(page).to have_content(@movie_1.title)
+    expect(page).to have_content(@movie_2.title)
   end
 end
