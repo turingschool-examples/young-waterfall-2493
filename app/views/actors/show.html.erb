@@ -1,0 +1,10 @@
+<div class="columns">
+  <h1><%= @actor.name %></h1>
+  <p><%= @actor.age %></p>
+</div>
+
+<div class="columns" id="coactors">
+  <% @coactors.each do |ca| %>
+    <%= ca.name %>
+  <% end %>
+</div>
