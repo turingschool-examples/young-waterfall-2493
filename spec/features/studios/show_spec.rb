@@ -1,12 +1,14 @@
 require 'rails_helper'
 
-# Story 1
-# Studio Show
- 
+# Story 2
+# Studio's Actors
+
 # As a user,
 # When I visit a studio show page
-# I see the studio's name and location
-# And I see the titles of all of its movies
+# I see a list of actors that have acted in any of the studio's movies
+# And I see that the list of actors is unique (no duplicate actors)
+# And I see that the list of actors is ordered from oldest actor to youngest
+# And I see that the list of actors only includes actors that are currently working
 
 RSpec.describe 'studio show page' do
   describe 'display' do
