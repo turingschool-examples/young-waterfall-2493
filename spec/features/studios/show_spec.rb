@@ -12,6 +12,7 @@ RSpec.describe "Studio Show Page" do
     @robbins = @shawshank.actors.create(name: "Tim Robbins", age: 62, currently_working: true)
     @washington = @eli.actors.create(name: "Denzel Washington", age: 66, currently_working: true)
     @kunis = @eli.actors.create(name: "Mila Kunis", age: 37, currently_working: true)
+    @kunis_2 = @shawshank.actors.create(name: "Mila Kunis", age: 37, currently_working: true)
   end
 
   it 'displays studio name, location, and movie titles' do
@@ -23,23 +24,29 @@ RSpec.describe "Studio Show Page" do
   end
 
   describe 'displays actors associated with movies filmed at studio' do
-    xit 'and I see the list of actors is unique (no duplicates)' do
-      @kunis_2 = @shawshank.actors.create(name: "Mila Kunis", age: 37, currently_working: true)
+    it 'and I see the list of actors is unique (no duplicates)' do
       visit "/studios/#{@mgm.id}"
       expect(@mgm.studio_actors).to eq(["#{@freeman.name}", "#{@washington.name}", "#{@robbins.name}", "#{@kunis.name}"])
       expect(page).to have_content(@mgm.studio_actors)
-      expect(page).to_not have_content(@kunis_2.name)
+      # expect(page).to_not have_content(@kunis_2.name)
+      # how to assert for no duplicates
+      expect(@mgm.studio_actors.count).to eq(4)
     end
 
     it 'and the list is ordered from oldest actor to youngest' do
       visit "/studios/#{@mgm.id}"
-      expect(@freeman.name).to appear_before(@ford.name)
-      expect(@ford.name).to appear_before(@washington.name)
+      expect(@freeman.name).to appear_before(@washington.name)
       expect(@washington.name).to appear_before(@kunis.name)
       #remove ford from test once previous test corrected to only actors at studio
     end
 
     xit 'and the list includes only actors currently working' do
+      visit "/studios/#{@mgm.id}"
+      expect(page).to have_content(@freeman.name)
+      expect(page).to have_content(@washington.name)
+      expect(page).to have_content(@kunis.name)
+      expect(page).to_not have_content(@robbins.name)
+      # when given false for currently_working, not created in db
     end
   end
 end
