@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe Studio do
+RSpec.describe Actor do
   describe 'relationships' do
-    it {should have_many :movies}
-    it { should have_many(:actors).through(:movies) }
+    it { should have_many(:actor_movies) }
+    it { should have_many(:movies).through(:actor_movies) }
   end
 
   before :each do
@@ -20,14 +20,14 @@ RSpec.describe Studio do
     ActorMovie.create!(actor: @actor_1, movie: @movie_3)
     ActorMovie.create!(actor: @actor_3, movie: @movie_4)
     ActorMovie.create!(actor: @actor_1, movie: @movie_4)
-    ActorMovie.create!(actor: @actor_2, movie: @movie_4)  ##differs from seeds
   end
 
   describe 'instance methods' do
-    describe '.actors_list' do
-      it 'returns all currently working actors, for studio, ordered by age, desc, no duplicates' do
-        expect(@studio_3.actors_list).to eq([@actor_2, @actor_1])
+    describe '.acted_with' do
+      it 'returns all co-actors that were in the same movies' do
+        # expect(@actor_1.acted_with).to eq([@actor_3])
       end
     end
   end
+
 end

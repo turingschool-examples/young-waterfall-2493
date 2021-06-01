@@ -1,0 +1,16 @@
+<h1><%= @movie.title %></h1>
+<h2><%= @movie.creation_year %></h2>
+<h2><%= @movie.genre %></h2>
+
+<h3>Movie's Actors</h3>
+<% @movie.actors.each do |actor| %>
+  <p>&emsp;<%= actor.name %></p><br/>
+<% end %>
+
+<p>Add a Actor to Movie:</p><br/>
+<%= form_with url: "/movies/#{@movie.id}", method: :post, local: true do |form| %>
+  <%= form.label :actor_id %>
+  <%= form.number_field :actor_id %><br/><br/>
+
+  <%= form.submit 'Add Actor to Movie' %>
+<% end %><br/>
