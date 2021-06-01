@@ -4,6 +4,6 @@ class Movie < ApplicationRecord
   has_many :actor, through: :movie_actor
 
   def non_appearing
-    Actor.where('id not in (?)', self.actor_ids)
+    Actor.all - self.actor
   end
 end

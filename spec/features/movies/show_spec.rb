@@ -36,10 +36,7 @@ RSpec.describe 'movies show page' do
 
       visit "movies/#{movie_1.id}"
 
-      expect(page).to_not have_content(actor_1.name)
-      save_and_open_page
-
-      find('#actor_id').find(:xpath, 'option[1]').select_option
+      find('#actor_id').find(:xpath, 'option[2]').select_option
 
       click_button 'Submit'
 
