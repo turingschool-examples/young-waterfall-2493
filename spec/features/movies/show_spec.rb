@@ -16,8 +16,6 @@ RSpec.describe 'Movie show page' do
 
     @movie_1.actors << @actor_1
     @movie_1.actors << @actor_2
-    @movie_2.actors << @actor_3
-    @movie_2.actors << @actor_4
     @movie_3.actors << @actor_5
     @movie_3.actors << @actor_6
   end
@@ -38,5 +36,15 @@ RSpec.describe 'Movie show page' do
     expect(page).to have_content("#{@movie_3.genre}")
     expect(page).to have_content("#{@actor_5.name}")
     expect(page).to have_content("#{@actor_6.name}")
+  end
+
+  it 'can add an actor to a movie show page' do
+    visit "/movies/#{@movie_1.id}"
+
+    fill_in('Add Actor:', with: 'Actor Three')
+    click_button('Submit')
+
+    expect(current_path).to eq("/movies/#{@movie_1.id}")
+    expect(page).to have_content("#{@actor_3.name}")
   end
 end
