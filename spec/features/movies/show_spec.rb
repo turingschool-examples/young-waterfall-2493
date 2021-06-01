@@ -1,0 +1,31 @@
+require 'rails_helper'
+
+RSpec.describe Movie do 
+  before(:each) do 
+    @studio = Studio.create!(name: 'Universal Studios', location: 'Hollywood') 
+
+    @movie = @studio.movies.create!(title: 'Sound of Metal', creation_year: 2020, genre: 'Action')   
+
+    @actor_1 = @movie.actors.create!(name: 'John Boyega', age: 27, currently_working: true)
+    @actor_2 = @movie.actors.create!(name: 'Samuel L Jackson', age: 81, currently_working: false)
+    @actor_3 = @movie.actors.create!(name: 'Lakeith Stanfield', age: 33, currently_working: true)
+    @actor_4 = @movie.actors.create!(name: 'Brian Henry', age: 36, currently_working: true) 
+  end    
+#   Story 3
+# Movie Show
+ 
+# As a user,
+# When I visit a movie's show page.
+# I see the movie's title, creation year, and genre,
+# and I see all of the actors in the movie  
+  it 'shows a movies attributes' do
+    visit "/movies/#{@movie.id}"  
+
+    expect(page).to have_content(@movie.title)
+    expect(page).to have_content(@movie.creation_year)
+    expect(page).to have_content(@movie.genre)
+  end    
+
+  xit 'shows all the actors in a movie' do
+  end
+end 
