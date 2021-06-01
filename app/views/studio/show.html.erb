@@ -1,0 +1,16 @@
+<h1>Studio Show Page</h1>
+
+  <p><%= @studio.name %></p>
+  <p><%= @studio.location %></p>
+
+  <% @studio.movies.each do |movie| %>
+    <p><%= movie.title %></p>
+
+    <% movie.actors.each do |actor| %>
+      <% if actor.currently_working == true %>
+        <p><%= actor.name %></p>
+      <% end %>
+    <%end%>
+  <% end %>
+
+ 
