@@ -1,0 +1,3 @@
+class DifferentRolesController < ApplicationController
+ 
+end
