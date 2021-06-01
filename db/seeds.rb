@@ -36,5 +36,5 @@ ActorMovie.create!(actor: hamill, movie: empire)
 ActorMovie.create!(actor: ford, movie: jedi)
 ActorMovie.create!(actor: hamill, movie: jedi)
 ActorMovie.create!(actor: elwes, movie: princess)
-ActorMovie.create!(actor: ford, movie: princess)  ##
+# ActorMovie.create!(actor: ford, movie: princess)  ##
 ActorMovie.create!(actor: ford, movie: raiders)

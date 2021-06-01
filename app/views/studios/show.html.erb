@@ -1,23 +1,17 @@
-<h1><%= @chef.name %></h1>
+<h1><%= @studio.name %></h1>
+<h2><%= @studio.location %></h2>
 
-<section id="chef_dishes">
-  <h3>Dishes</h3>
-  <% @chef.dishes.each do |dish| %>
-    <section id="dish-<%= dish.id %>">
-      <%= dish.name %><br>
-      <%= dish.description %>
-      <%= button_to "Delete Dish", "/dishes/#{dish.id}", method: :delete %><br>
-    </section>
-  <% end %>
-</section>
+<h3>Studio Movies</h3>
+<% @studio.movies.each do |movie| %>
+  <p><%= movie.name %></p><br/>
+<% end %>
 
-<section id="chef_ingredients">
-  <h2>Ingredients</h2>
-  <% @chef.ingredients.each do |name, calories| %>
-    <%= name.capitalize %>,
-    Calories: <%= calories %><br><br>
-  <% end %>
-</section>
+<h3>Studio Movies Actors</h3>
+<% @studio.actors_list.each do |actor| %>
+  <p><%= actor.name %></p><br/>
+<% end %>
+<br/><br/>
+
 
 ##RYAN
 <h1>Chef Show Page</h1>

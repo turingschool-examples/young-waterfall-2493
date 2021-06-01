@@ -22,6 +22,8 @@ RSpec.describe 'studio show page' do
     ActorMovie.create!(actor: @actor_2, movie: @movie_2)
     ActorMovie.create!(actor: @actor_3, movie: @movie_2)
     ActorMovie.create!(actor: @actor_3, movie: @movie_1)
+    ActorMovie.create!(actor: @actor_2, movie: @movie_4)  ##differs from seeds
+
   end
 
   it 'has the name & location of the studio' do
@@ -37,17 +39,12 @@ RSpec.describe 'studio show page' do
     expect(page).to_not have_content(@movie_2.title)
   end
 
-#   it 'has a list of all ingredients with calories, no duplicates' do
-#     visit "/chefs/#{chef.id}"
-#
-#     within("#chef_ingredients") do
-#         expect(page).to have_content(ingredient1.name.capitalize)
-#         expect(page).to have_content(ingredient1.calories)
-#
-#         expect(page).to have_content(ingredient2.name.capitalize)
-#         expect(page).to have_content(ingredient2.calories)
-#     end
-#   end
+  it 'has a list of all studio movie actors with no duplicates, ordered oldest to youngest, only currently working' do
+      visit "/studios/#{@studio_3.id}"
+    expect(page).to have_content(@actor_1.name)
+    expect(page).to have_content(@actor_2.name)
+    expect(page).to_not have_content(@actor_1.name)
+  end
 #
 #   it 'has ordered the list of ingredients from most calories to least' do
 #     visit "/chefs/#{chef.id}"
