@@ -1,0 +1,18 @@
+<div class="columns">
+  <h1><%= @studio.name %></h1>
+  <p><%= @studio.location %></p>
+</div>
+
+<div class="columns">
+  <h1>Movies</h1>
+  <% @studio.movies.each do |m| %>
+    <p><%= m.title %></p>
+  <% end %>
+</div>
+
+<div class="columns">
+  <h1>Actors</h1>
+  <% @actors.each do |a| %>
+    <p><%= a.name %></p>
+  <% end %>
+</div>
