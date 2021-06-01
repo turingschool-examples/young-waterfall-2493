@@ -43,7 +43,7 @@ RSpec.describe 'studio show page' do
       visit "/studios/#{@studio_3.id}"
     expect(page).to have_content(@actor_1.name)
     expect(page).to have_content(@actor_2.name)
-    expect(page).to_not have_content(@actor_1.name)
+    expect(page).to_not have_content(@actor_3.name)
   end
 #
 #   it 'has ordered the list of ingredients from most calories to least' do
