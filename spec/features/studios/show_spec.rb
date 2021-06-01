@@ -65,8 +65,6 @@ RSpec.describe 'studio show page' do
 
     visit "/studios/#{@studio.id}"
 
-    within('#h3') do
-      expect(page).to have_no_content("#{@actor_7}")
-    end
+    expect(page.all('h3')[3]).to have_no_content("{#{@actor_7.name}}")
   end
 end

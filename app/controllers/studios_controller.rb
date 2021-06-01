@@ -2,5 +2,7 @@ class StudiosController < ApplicationController
   def show
     @studio = Studio.find(params[:id])
     @movies = @studio.movies
-  end 
+    @sorted_unique_working_actors = @studio.sorted_unique_working_actors
+    binding.pry 
+  end
 end
