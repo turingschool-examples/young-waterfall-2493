@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'studio show page' do
+RSpec.describe 'actor show page' do
   before(:each)do
     @studio_1 = Studio.create!(name: 'Universal Studios', location: 'Hollywood')
     @studio_2 = Studio.create!(name: 'Focus Films', location: 'London')
@@ -22,26 +22,20 @@ RSpec.describe 'studio show page' do
     ActorMovie.create!(actor: @actor_2, movie: @movie_2)
     ActorMovie.create!(actor: @actor_3, movie: @movie_2)
     ActorMovie.create!(actor: @actor_3, movie: @movie_1)
-    ActorMovie.create!(actor: @actor_2, movie: @movie_4)  ##differs from seeds
   end
 
-  it 'has the name & location of the studio' do
-      visit "/studios/#{@studio_1.id}"
-    expect(page).to have_content("#{@studio_1.name}")
-    expect(page).to have_content("#{@studio_1.location}")
+  it 'has the actor name and age' do
+      visit "/movies/#{@movie_1.id}"
+    expect(page).to have_content(@movie_1.title)
+    expect(page).to have_content(@movie_1.creation_year)
+    expect(page).to have_content(@movie_1.genre)
   end
 
-  it 'has the titles of all the studios movies' do
-      visit "/studios/#{@studio_3.id}"
-    expect(page).to have_content(@movie_3.title)
-    expect(page).to have_content(@movie_4.title)
-    expect(page).to_not have_content(@movie_2.title)
-  end
+  # it 'has a unique list of all the co-actors the actor has worked with' do
+  #   visit "/actors/#{@actor_1.id}"
+  #
+  #   expect(page).to have_content(@actor_3.name)
+  #   expect(page).to_not have_content(@actor_2.name)
+  # end
 
-  it 'has a list of all studio movie actors with no duplicates, ordered oldest to youngest, only currently working' do
-      visit "/studios/#{@studio_3.id}"
-    expect(page).to have_content(@actor_2.name, count: 1)
-    expect(page).to have_content(@actor_1.name, count: 1)
-    expect(page).to_not have_content(@actor_3.name)
-  end
 end

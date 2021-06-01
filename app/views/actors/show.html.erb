@@ -1,0 +1,7 @@
+<h1><%= @actor.name %></h1>
+<h2><%= @actor.age %></h2>
+
+<h3>Actor's Co-Actors</h3>
+<% @actor.acted_with.each do |actor| %>
+  <p>&emsp;<%= actor.name %></p><br/>
+<% end %>
