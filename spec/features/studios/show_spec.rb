@@ -32,10 +32,9 @@ RSpec.describe 'studio show page' do
     expect(page).to have_content("#{@movie_3.title}")
   end
 
-  xit 'has a list of actors that have acted in the studios movies' do
+  it 'has a list of actors that have acted in the studios movies' do
     visit "/studios/#{@studio.id}"
 
-    expect(page).to have_content("#{@actor_1.name}")
     expect(page).to have_content("#{@actor_2.name}")
     expect(page).to have_content("#{@actor_3.name}")
     expect(page).to have_content("#{@actor_4.name}")
@@ -43,23 +42,23 @@ RSpec.describe 'studio show page' do
     expect(page).to have_content("#{@actor_6.name}")
   end
 
-  xit 'has the actors listed from oldest to youngest' do
+  it 'has the actors listed from oldest to youngest' do
     visit "/studios/#{@studio.id}"
 
-    expect(page.all('h3')[0]).to have_content("{#{@actor_4.name}}")
-    expect(page.all('h3')[1]).to have_content("{#{@actor_3.name}}")
-    expect(page.all('h3')[2]).to have_content("{#{@actor_2.name}}")
-    expect(page.all('h3')[3]).to have_content("{#{@actor_6.name}}")
-    expect(page.all('h3')[4]).to have_content("{#{@actor_5.name}}")
+    expect(page.all('h3')[0]).to have_content("#{@actor_4.name}")
+    expect(page.all('h3')[1]).to have_content("#{@actor_3.name}")
+    expect(page.all('h3')[2]).to have_content("#{@actor_2.name}")
+    expect(page.all('h3')[3]).to have_content("#{@actor_6.name}")
+    expect(page.all('h3')[4]).to have_content("#{@actor_5.name}")
   end
 
-  xit 'only shows actors that are currently working' do
+  it 'only shows actors that are currently working' do
     visit "/studios/#{@studio.id}"
 
     expect(page).to have_no_content("#{@actor_1.name}")
   end
 
-  xit 'does not show actors with the same name' do
+  it 'does not show actors with the same name' do
     @actor_7 = Actor.create!(name: 'Actor Two', age: 44, currently_working: true)
     @movie_1.actors << @actor_7
 

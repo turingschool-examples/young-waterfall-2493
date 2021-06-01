@@ -7,3 +7,6 @@
 <% end %>
 
 <h2>Working Actors from our Movies:</h2>
+<% @sorted_unique_working_actors.each do |actor| %>
+  <h3><%= actor.name %></h3>
+<% end %>
