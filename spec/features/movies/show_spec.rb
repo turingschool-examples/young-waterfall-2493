@@ -26,6 +26,12 @@ RSpec.describe Movie do
     expect(page).to have_content(@movie.genre)
   end    
 
-  xit 'shows all the actors in a movie' do
+  it 'shows all the actors in a movie' do
+    visit  "/movies/#{@movie.id}"
+    
+    expect(page).to have_content(@actor_1.name)
+    expect(page).to have_content(@actor_2.name)
+    expect(page).to have_content(@actor_3.name)
+    expect(page).to have_content(@actor_4.name)
   end
 end 
