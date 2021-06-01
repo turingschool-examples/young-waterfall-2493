@@ -36,7 +36,7 @@ RSpec.describe 'Movie show page' do
     expect(page).to have_content("#{@movie_3.title}")
     expect(page).to have_content("#{@movie_3.creation_year}")
     expect(page).to have_content("#{@movie_3.genre}")
-    expect(page).to have_content("#{@actor_3.name}")
-    expect(page).to have_content("#{@actor_4.name}")
+    expect(page).to have_content("#{@actor_5.name}")
+    expect(page).to have_content("#{@actor_6.name}")
   end
 end
