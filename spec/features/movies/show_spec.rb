@@ -24,4 +24,15 @@ RSpec.describe "Movie Show Page" do
     expect(page).to have_content(@kunis.name)
     expect(page).to_not have_content(@robbins.name)
   end
+
+  describe 'it only lists actors associated with movie' do
+    it 'and I can add actor to this movie' do
+      visit "/movies/#{@eli.id}"
+      expect(page).to_not have_content(@robbins.name)
+      fill_in 'Name', with: 'Harrison Ford'
+      click_button 'Submit'
+      expect(current_path).to eq("/movies/#{@eli.id}")
+      expect(page).to have_content(@robbins.name)
+    end
+  end
 end

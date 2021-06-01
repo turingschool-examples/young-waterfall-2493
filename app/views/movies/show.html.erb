@@ -5,3 +5,9 @@
   <p><% @movie.actors.each do |actor| %></p>
     <%= actor.name %>
   <p><% end %></p>
+
+<%= form_with url: "/movies/:id", method: :get, local: true do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.submit %>
+<% end %>
