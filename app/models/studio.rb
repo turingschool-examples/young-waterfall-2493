@@ -3,6 +3,6 @@ class Studio < ApplicationRecord
   has_many :movies
 
   def studio_actors
-    Movie.joins(:actors).order(age: :desc).pluck(:name)
+    Movie.joins(:actors).order(age: :desc).pluck(:name).uniq
   end
 end

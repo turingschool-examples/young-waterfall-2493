@@ -14,19 +14,32 @@ RSpec.describe "Studio Show Page" do
     @kunis = @eli.actors.create(name: "Mila Kunis", age: 37, currently_working: true)
   end
 
-  # Story 1
-  # Studio Show
-  #
-  # As a user,
-  # When I visit a studio show page
-  # I see the studio's name and location
-  # And I see the titles of all of its movies
-
   it 'displays studio name, location, and movie titles' do
     visit "/studios/#{@mgm.id}"
     expect(page).to have_content(@mgm.name)
     expect(page).to have_content(@mgm.location)
     expect(page).to have_content(@shawshank.title)
     expect(page).to have_content(@eli.title)
+  end
+
+  describe 'displays actors associated with movies filmed at studio' do
+    xit 'and I see the list of actors is unique (no duplicates)' do
+      @kunis_2 = @shawshank.actors.create(name: "Mila Kunis", age: 37, currently_working: true)
+      visit "/studios/#{@mgm.id}"
+      expect(@mgm.studio_actors).to eq(["#{@freeman.name}", "#{@washington.name}", "#{@robbins.name}", "#{@kunis.name}"])
+      expect(page).to have_content(@mgm.studio_actors)
+      expect(page).to_not have_content(@kunis_2.name)
+    end
+
+    it 'and the list is ordered from oldest actor to youngest' do
+      visit "/studios/#{@mgm.id}"
+      expect(@freeman.name).to appear_before(@ford.name)
+      expect(@ford.name).to appear_before(@washington.name)
+      expect(@washington.name).to appear_before(@kunis.name)
+      #remove ford from test once previous test corrected to only actors at studio
+    end
+
+    xit 'and the list includes only actors currently working' do
+    end
   end
 end
