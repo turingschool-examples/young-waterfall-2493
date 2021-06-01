@@ -1,6 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe 'Show Page' do
+  it "shows studio info" do
+    studio = Studio.create! attributes_for(:studio)
+    movie1 = studio.movies.create! attributes_for(:movie)
+    movie2 = studio.movies.create! attributes_for(:movie)
+
+    visit "/studios/#{studio.id}"
+    expect(page).to have_content(studio.name)
+    expect(page).to have_content(studio.location)
+    expect(page).to have_content(movie1.title)
+    expect(page).to have_content(movie2.title)
+  end
+
   it "finds actors for this studio" do
     studio = Studio.create! attributes_for(:studio)
     movie1 = studio.movies.create! attributes_for(:movie)
