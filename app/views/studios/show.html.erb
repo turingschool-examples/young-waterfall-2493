@@ -1,0 +1,50 @@
+<h1><%= @chef.name %></h1>
+
+<section id="chef_dishes">
+  <h3>Dishes</h3>
+  <% @chef.dishes.each do |dish| %>
+    <section id="dish-<%= dish.id %>">
+      <%= dish.name %><br>
+      <%= dish.description %>
+      <%= button_to "Delete Dish", "/dishes/#{dish.id}", method: :delete %><br>
+    </section>
+  <% end %>
+</section>
+
+<section id="chef_ingredients">
+  <h2>Ingredients</h2>
+  <% @chef.ingredients.each do |name, calories| %>
+    <%= name.capitalize %>,
+    Calories: <%= calories %><br><br>
+  <% end %>
+</section>
+
+##RYAN
+<h1>Chef Show Page</h1>
+
+<div class="chef-info">
+  <h2>CHEF: <%= @chef.name %></h2>
+</div>
+
+<div class="dish-describe">
+  <h3>Dishes:</h3>
+  <ul>
+    <% @chef.dishes.each do |dish| %>
+    <li>
+      <%= dish.name %>---DESCRIPTION: <%= dish.description %>
+      <div id="dish-<%="#{dish.id}"%> "style="display:inline-block;">
+        <%= button_to "Remove #{dish.id}", chef_path(@chef, dish.id), method: :patch %>
+      </div>
+    </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="ingredients-describe">
+  <h3>ingredients:</h3>
+  <ul>
+    <% @chef.ingredients.distinct.each do |ingredient| %>
+    <li><%= ingredient.name %>--CALORIES:  <%= ingredient.calories %></li>
+    <% end %>
+  </ul>
+</div>
