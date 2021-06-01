@@ -1,0 +1,17 @@
+<h1><%= @movie.title %></h1>
+<h3><%= @movie.creation_year %></h3>
+<h3><%= @movie.genre %></h3>
+
+<h2>actors:</h2>
+<ul>
+  <% @actors.each do |actor| %>
+    <li><%= actor.name %></li>
+  <% end %>
+</ul>
+
+<h1>Add Actor to Movie:</h1>
+<%= form_with url: "/movie_actors", method: :post, local: true do |f| %>
+  <%= collection_select(:actor, :id, @free_actors, :id, :name_text, prompt: true) %>
+  <%= f.hidden_field(:movie_id, :value => @movie.id) %>
+  <%= f.submit 'Submit' %>
+<% end %>
