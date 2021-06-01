@@ -19,4 +19,32 @@ RSpec.describe 'movies show page' do
       expect(page).to have_content(actor_2.name)
     end
   end
+  describe 'add actor' do
+    it 'has a button to add actors to a movie' do
+      studio = Studio.create(name: 'Paramount', location: 'Iowa')
+      movie_1 = studio.movies.create(title: 'Man man', creation_year: '1876', genre: 'horror')
+
+      visit "movies/#{movie_1.id}"
+
+      expect(page).to have_button('Submit')
+    end
+    it 'can select any actor not in to movie to be added to the movie' do
+      studio = Studio.create(name: 'Paramount', location: 'Iowa')
+      movie_1 = studio.movies.create(title: 'Man man', creation_year: '1876', genre: 'horror')
+      actor_1 = Actor.create(name: 'Marison Hord', age: 26, currently_working: false)
+      actor_2 = Actor.create(name: 'MZuko', age: 16, currently_working: true)
+
+      visit "movies/#{movie_1.id}"
+
+      expect(page).to_not have_content(actor_1.name)
+      save_and_open_page
+
+      find('#actor_id').find(:xpath, 'option[1]').select_option
+
+      click_button 'Submit'
+
+      expect(page).to have_current_path("/movies/#{movie_1.id}")
+      expect(page).to have_content(actor_1.name)
+    end
+  end
 end

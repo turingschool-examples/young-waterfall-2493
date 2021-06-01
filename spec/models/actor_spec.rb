@@ -24,4 +24,14 @@ RSpec.describe Actor do
       end
     end
   end
+
+  describe 'instance methods' do
+    describe '.name_text' do
+      it 'displays the actors name as text' do
+        actor_1 = Actor.create(name: 'Marison Hord', age: 26, currently_working: false)
+
+        expect(actor_1.name_text).to eq('Marison Hord')
+      end
+    end
+  end
 end
