@@ -14,10 +14,19 @@ RSpec.describe "Studio Show Page" do
     @kunis = @eli.actors.create(name: "Mila Kunis", age: 37, currently_working: true)
   end
 
+  # Story 1
+  # Studio Show
+  #
+  # As a user,
+  # When I visit a studio show page
+  # I see the studio's name and location
+  # And I see the titles of all of its movies
+
   it 'displays studio name, location, and movie titles' do
     visit "/studios/#{@mgm.id}"
     expect(page).to have_content(@mgm.name)
     expect(page).to have_content(@mgm.location)
-    expect(page).to have_content(@mgm.movies)
+    expect(page).to have_content(@shawshank.title)
+    expect(page).to have_content(@eli.title)
   end
 end
