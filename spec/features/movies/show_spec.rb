@@ -23,6 +23,7 @@ RSpec.describe 'studio show page' do
     ActorMovie.create!(actor: @actor_3, movie: @movie_2)
     ActorMovie.create!(actor: @actor_3, movie: @movie_1)
     ActorMovie.create!(actor: @actor_2, movie: @movie_4)  ##differs from seeds
+
   end
 
   it 'has the name & location of the studio' do
