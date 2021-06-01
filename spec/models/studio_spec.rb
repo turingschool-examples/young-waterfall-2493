@@ -24,7 +24,7 @@ RSpec.describe Studio do
   end
 
   describe 'instance methods' do
-    describe '.find_all_working_actors' do
+    describe '.actors_list' do
       it 'returns all currently working actors, for studio, ordered by age, desc, no duplicates' do
         expect(@studio_3.actors_list).to eq([@actor_2, @actor_1])
       end

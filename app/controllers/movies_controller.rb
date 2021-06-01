@@ -4,6 +4,12 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
   end
 
+  def create
+    @movie = Movie.find(params[:id])
+    
+  end
+
+
   # def new
   #   @shelter = Shelter.find(params[:shelter_id])
   # end
