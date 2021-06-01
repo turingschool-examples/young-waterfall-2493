@@ -8,12 +8,23 @@ RSpec.describe "studios show page", type: :feature do
       @movie2 = Movie.create!(title: "Land of the dead", creation_year: "2010", genre: "Horror", studio_id: @studio1.id)
       @movie3 = Movie.create!(title: "Nuggets vs Clippers", creation_year: "2021", genre: "Sports", studio_id: @studio2.id)
       @movie4 = Movie.create!(title: "Jersey Shore the Movie", creation_year: "2012", genre: "Drama", studio_id: @studio2.id)
-      @actor1 = Actor.create!
-      @actor2 = Actor.create!
-      @actor3 = Actor.create!
-      @actor4 = Actor.create!
-      @actor5 = Actor.create!
-      @actor6 = Actor.create!
+      @actor1 = Actor.create!(name: "Harrison Ford", age: 78, currently_working: true)
+      @actor2 = Actor.create!(name: "John Leguizamo", age: 56, currently_working: true)
+      @actor3 = Actor.create!(name: "Simon Baker", age: 51, currently_working: true)
+      @actor4 = Actor.create!(name: "Arnold Schwarzenegger", age: 73, currently_working: false)
+      @actor5 = Actor.create!(name: "Sean Connery", age: 90, currently_working: false)
+      @actor6 = Actor.create!(name: "Pierce Brosnan", age: 68, currently_working: true)
+      @role1 = DifferentRole.create!(movie_id: @movie1.id, actor_id: @actor4)
+      @role2 = DifferentRole.create!(movie_id: @movie1.id, actor_id: @actor6)
+      @role11 = DifferentRole.create!(movie_id: @movie1.id, actor_id: @actor3)
+      @role3 = DifferentRole.create!(movie_id: @movie2.id, actor_id: @actor3)
+      @role4 = DifferentRole.create!(movie_id: @movie2.id, actor_id: @actor4)
+      @role5 = DifferentRole.create!(movie_id: @movie3.id, actor_id: @actor6)
+      @role6 = DifferentRole.create!(movie_id: @movie3.id, actor_id: @actor5)
+      @role7 = DifferentRole.create!(movie_id: @movie3.id, actor_id: @actor4)
+      @role8 = DifferentRole.create!(movie_id: @movie4.id, actor_id: @actor3)
+      @role9 = DifferentRole.create!(movie_id: @movie4.id, actor_id: @actor5)
+      @role10 = DifferentRole.create!(movie_id: @movie4.id, actor_id: @actor1)
       visit "/studios/#{@studio1.id}"
    end
 
@@ -32,7 +43,16 @@ RSpec.describe "studios show page", type: :feature do
   end
 
   describe "On a Studios show page can list the actors in the movies, no duplicate actors are used and listed from oldest to youngest with only actors currently working"
-    xit 'can list all actors and no duplicate names in the movies' do
+    # As a user,
+    # When I visit a studio show page
+    # I see a list of actors that have acted in any of the studio's movies
+    # And I see that the list of actors is unique (no duplicate actors)
+    # And I see that the list of actors is ordered from oldest actor to youngest
+    # And I see that the list of actors only includes actors that are currently working
+    it 'can list all actors and no duplicate names in the movies' do
       
+      expect(page).to have_content(@actor3.name)
+      expect(page).to have_content(@actor6.name)
+      expect(page).to have_content(@actor4.name)
     end
 end
