@@ -5,7 +5,4 @@ RSpec.describe Actor do
     it { should have_many(:actor_movies) }
     it { should have_many(:movies).through(:actor_movies) }
   end
-
-  before :each do
-  end
 end
