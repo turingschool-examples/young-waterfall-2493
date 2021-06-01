@@ -5,6 +5,7 @@ class MoviesController < ApplicationController
 
   def add_actor
     movie = Movie.find params[:id]
-    movie.actors << Actor.find params[:actor]
+    movie.actors << Actor.find(params[:actor])
+    redirect_to "/movies/#{movie.id}"
   end
 end

@@ -4,15 +4,16 @@
   <p>Genre: <%= @movie.genre %></p>
 </div>
 
-<div class="columns">
+<div class="columns" id="actors">
   <h1>Actors</h1>
   <% @movie.actors.each do |a| %>
-    <%= a.name %>
+    <p><%= a.name %></p>
   <% end %>
 </div>
 
 <div class="columns">
   <%= form_with url: "/movies/#{@movie.id}/add_actor", method: :patch, local: true do |f| %>
-    <%= f.select :actor, Actor.all.pluck(:name, :id) %>
+    <%= f.select :actor, @movie.add_actor_options %>
+    <%=  f.submit %>
   <% end %>
 </div>

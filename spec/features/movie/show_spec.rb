@@ -17,4 +17,25 @@ RSpec.describe 'Movie Show Page' do
     expect(page).to have_content(actor1.name)
     expect(page).to have_content(actor2.name)
   end
+
+  it "adds an actor" do
+    movie = @studio.movies.create! attributes_for(:movie)
+    actor1 = Actor.create! attributes_for(:actor)
+    actor2 = Actor.create! attributes_for(:actor)
+    movie.actors << actor1
+    visit "/movies/#{movie.id}"
+    within('#actors') do
+      expect(page).to have_content(actor1.name)
+      expect(page).to_not have_content(actor2.name)
+    end
+
+    select actor2.name, from: 'actor'
+    click_on 'commit'
+    expect(page).to have_current_path("/movies/#{movie.id}")
+    within('#actors') do
+      expect(page).to have_content(actor1.name)
+      expect(page).to have_content(actor2.name)
+    end
+
+  end
 end
