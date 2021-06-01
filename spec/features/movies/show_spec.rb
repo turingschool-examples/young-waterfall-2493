@@ -28,5 +28,15 @@ RSpec.describe 'studio show page' do
       expect(page).to_not have_content("* #{@bill.name}")
     end
 
+    it 'has form to add actor to movie' do
+      visit "/movies/#{@howl.id}"
+      
+      expect(page).to_not have_content("* #{@bill.name}")
+
+      fill_in 'Actor Name', with: 'Bill Wise'
+      click_on('Add Actor')
+
+      expect(page).to have_content("* #{@bill.name}")
+    end
   end 
 end
