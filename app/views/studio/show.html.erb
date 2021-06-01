@@ -7,7 +7,9 @@
     <p><%= movie.title %></p>
 
     <% movie.actors.each do |actor| %>
-      <p><%= actor.name %></p>
+      <% if actor.currently_working == true %>
+        <p><%= actor.name %></p>
+      <% end %>
     <%end%>
   <% end %>
 

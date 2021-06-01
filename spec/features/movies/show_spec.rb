@@ -11,13 +11,8 @@ RSpec.describe Movie do
     @actor_3 = @movie.actors.create!(name: 'Lakeith Stanfield', age: 33, currently_working: true)
     @actor_4 = @movie.actors.create!(name: 'Brian Henry', age: 36, currently_working: true) 
   end    
-#   Story 3
-# Movie Show
- 
-# As a user,
-# When I visit a movie's show page.
-# I see the movie's title, creation year, and genre,
-# and I see all of the actors in the movie  
+  
+  # Story 3 
   it 'shows a movies attributes' do
     visit "/movies/#{@movie.id}"  
 

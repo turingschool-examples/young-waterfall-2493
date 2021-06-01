@@ -41,5 +41,6 @@ RSpec.describe 'studio show page' do
     expect(page).to have_content(@actor_1.name)
     expect(page).to have_content(@actor_3.name)
     expect(page).to have_content(@actor_4.name)
+    expect(page).to_not have_content(@actor_2.name)
   end
 end
