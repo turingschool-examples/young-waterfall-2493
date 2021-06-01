@@ -12,11 +12,11 @@ RSpec.describe 'studio show page' do
   describe 'display' do
     it 'show studio and attributes' do
       studio = Studio.create!(name: "Colby Theater", location: "Boston")
-      
+
       visit "/studios/#{studio.id}"
 
       expect(page).to have_content("#{studio.name}")
-      expect(page).to have_content("#{studio.location}")
+      expect(page).to have_content("Location: #{studio.location}")
     end
   end 
 end
