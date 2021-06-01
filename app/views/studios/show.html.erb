@@ -6,3 +6,10 @@
 <% @studio.movies.each do |movie| %>
   <li><%= movie.title %></li>
 <% end %>
+
+<ul>Actors</ul>
+<% @movies.each do |movie| %>
+  <% movie.actors.each do |actor| %>
+    <li><%= actor.name %></li>
+  <% end %>
+<% end %>
