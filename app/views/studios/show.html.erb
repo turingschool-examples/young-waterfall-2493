@@ -9,7 +9,9 @@
 
 <ul>Actors</ul>
 <% @movies.each do |movie| %>
-  <% movie.actors.each do |actor| %>
+  <% movie.working_actors.each do |actor| %>
     <li><%= actor.name %></li>
   <% end %>
 <% end %>
+
+

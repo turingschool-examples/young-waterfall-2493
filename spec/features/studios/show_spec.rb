@@ -28,9 +28,13 @@ RSpec.describe 'studio show page' do
     actor_3 = Actor.create!(name: 'Crystall Ball', age:34, currently_working: true)
     actor_4 = Actor.create!(name: 'Jay Walker', age:18, currently_working: true)
     actor_5 = Actor.create!(name: 'Justin Thyme', age:45, currently_working: false)
-    
+
     visit "/studios/#{studio_1.id}"
     save_and_open_page
     expect(page).to have_content(actor_1.name)
+    expect(page).to have_content(actor_3.name)
+    expect(page).to have_content(actor_4.name)
+    expect(page).to_not have_content(actor_2.name)
+    expect(page).to_not have_content(actor_5.name)
   end
 end
